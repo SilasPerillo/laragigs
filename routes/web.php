@@ -15,20 +15,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/hello', function () {
-    return response('<h1>Hello World, First PHP</h1>', 200)
-        ->header('Content-Type', 'text/plain')
-        ->header('foo', 'bar');
-});
-
-Route::get('/posts/{id}', function ($id) {
-    // ddd($id); // para debugar a aplicação
-    return response('Post ' . $id);
-})->where('id', '[0-9]+');
-
-Route::get('/search', function (Request $request) {
-    return $request->name .  ' live in ' . $request->city;
+    return view('listings', [
+        'heading' => 'Latest Listings',
+        'listings' => [
+            [
+                'id' => 1,
+                'title' => 'Listing One',
+                'description' => 'Mussum Ipsum, cacilds vidis litro abertis. Leite de capivaris, leite de mula manquis sem cabeça. Suco de cevadiss deixa as pessoas mais interessantis. Casamentiss faiz malandris se pirulitá. Detraxit consequat et quo num tendi nada.'
+            ],
+            [
+                'id' => 2,
+                'title' => 'Listing Two',
+                'description' => 'Mussum Ipsum, cacilds vidis litro abertis. Leite de capivaris, leite de mula manquis sem cabeça. Suco de cevadiss deixa as pessoas mais interessantis. Casamentiss faiz malandris se pirulitá. Detraxit consequat et quo num tendi nada.'
+            ]
+        ]
+    ]);
 });
